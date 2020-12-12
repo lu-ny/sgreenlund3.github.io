@@ -40,21 +40,67 @@
         </nav>
         </div>
     </nav>
-    <section class="portfolio-block website">
-        <div class="container">
-            <div class="row align-items-center" style="margin-top: 30px;">
-                <div class="col-md-12 col-lg-5 offset-lg-1 text">
-                    <h3 style="text-align: center;">VR Safe Space</h3>
-                    <p class="text-justify">Since creating spaces for VR aren't particularly user-friendly for people who aren't already experience with GameDev, I wanted to create/compile assets that could be used to easily make a VR "Safe Space" for people with trauma/PTSD,
-                        anxiety, etc who might find themselves in a situation in which they feel uncomfortable and need an escape. While not everyone has a portable VR system (Oculus Quest in my case), this could be scaled down to be used with smartphones
-                        and more affordable phone VR goggles.&nbsp;</p>
-                </div>
-                <div class="col">
-                    <div class="embed-responsive embed-responsive-1by1"><iframe class="embed-responsive-item" src="https://editor.p5js.org/sugr7650/embed/STWilA6ns"></iframe></div>
-                </div>
-            </div>
+
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-logo"></div>
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
         </div>
-    </section>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+          <div id="unity-build-title">Crow Attack!</div>
+        </div>
+      </div>
+      <script>
+        var buildUrl = "Build";
+        var loaderUrl = buildUrl + "/Crow attack webgl.loader.js";
+        var config = {
+          dataUrl: buildUrl + "/Crow attack webgl.data.br",
+          frameworkUrl: buildUrl + "/Crow attack webgl.framework.js.br",
+          codeUrl: buildUrl + "/Crow attack webgl.wasm.br",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "Themgineer Creative",
+          productName: "Crow Attack!",
+          productVersion: "1.0",
+        };
+  
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+  
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          container.className = "unity-mobile";
+          config.devicePixelRatio = 1;
+        } else {
+          canvas.style.width = "960px";
+          canvas.style.height = "600px";
+        }
+        loadingBar.style.display = "block";
+  
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+          createUnityInstance(canvas, config, (progress) => {
+            progressBarFull.style.width = 100 * progress + "%";
+          }).then((unityInstance) => {
+            loadingBar.style.display = "none";
+            fullscreenButton.onclick = () => {
+              unityInstance.SetFullscreen(1);
+            };
+          }).catch((message) => {
+            alert(message);
+          });
+        };
+        document.body.appendChild(script);
+      </script>
+
+    
     <footer class="page-footer">
         <div class="container">
             <div class="links"><a href="about.html">About me</a><a href="projects-grid-cards.html">Projects</a></div>
