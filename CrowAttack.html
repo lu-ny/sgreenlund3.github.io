@@ -17,101 +17,108 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="#">Themgineer</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item item"><a class="nav-link" href="#">Projects</a></li>
-                    <li class="nav-item item"><a class="nav-link" href="#">CV</a></li>
-                    <li class="nav-item item"><a class="nav-link" href="#">Hire me</a></li>
-                </ul>
-            </div>
-            <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(90deg, rgb(69,0,94), rgb(27,0,18));">
-                <div class="container"><a class="navbar-brand logo" href="index.html">Themgineer</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div
-                        class="collapse navbar-collapse" id="navbarNav-1">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                        </ul>
+  <section class="portfolio-block website">
+    <div class="container">
+      <div class="col">
+        <div>
+          <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar gradient">
+            <div class="container"><a class="navbar-brand logo" href="#">Themgineer</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navbarNav">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item item"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item item"><a class="nav-link" href="#">Projects</a></li>
+                        <li class="nav-item item"><a class="nav-link" href="#">CV</a></li>
+                        <li class="nav-item item"><a class="nav-link" href="#">Hire me</a></li>
+                    </ul>
                 </div>
-        </div>
+                <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" style="background: linear-gradient(90deg, rgb(69,0,94), rgb(27,0,18));">
+                    <div class="container"><a class="navbar-brand logo" href="index.html">Themgineer</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                        <div
+                            class="collapse navbar-collapse" id="navbarNav-1">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="projects-grid-cards.html">Projects</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            </ul>
+                    </div>
+            </div>
+            </nav>
+            </div>
         </nav>
-        </div>
-    </nav>
-
-    <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas"></canvas>
-        <div id="unity-loading-bar">
-          <div id="unity-logo"></div>
-          <div id="unity-progress-bar-empty">
-            <div id="unity-progress-bar-full"></div>
+    
+        <div id="unity-container" class="unity-desktop">
+            <canvas id="unity-canvas"></canvas>
+            <div id="unity-loading-bar">
+              <div id="unity-logo"></div>
+              <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="unity-footer">
+              <div id="unity-webgl-logo"></div>
+              <div id="unity-fullscreen-button"></div>
+              <div id="unity-build-title">Crow Attack!</div>
+            </div>
           </div>
-        </div>
-        <div id="unity-footer">
-          <div id="unity-webgl-logo"></div>
-          <div id="unity-fullscreen-button"></div>
-          <div id="unity-build-title">Crow Attack!</div>
+          <script>
+            var buildUrl = "Build";
+            var loaderUrl = buildUrl + "/Crow attack webgl.loader.js";
+            var config = {
+              dataUrl: buildUrl + "/Crow attack webgl.data.br",
+              frameworkUrl: buildUrl + "/Crow attack webgl.framework.js.br",
+              codeUrl: buildUrl + "/Crow attack webgl.wasm.br",
+              streamingAssetsUrl: "StreamingAssets",
+              companyName: "Themgineer Creative",
+              productName: "Crow Attack!",
+              productVersion: "1.0",
+            };
+      
+            var container = document.querySelector("#unity-container");
+            var canvas = document.querySelector("#unity-canvas");
+            var loadingBar = document.querySelector("#unity-loading-bar");
+            var progressBarFull = document.querySelector("#unity-progress-bar-full");
+            var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+              container.className = "unity-mobile";
+              config.devicePixelRatio = 1;
+            } else {
+              canvas.style.width = "960px";
+              canvas.style.height = "600px";
+            }
+            loadingBar.style.display = "block";
+      
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+              createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+            document.body.appendChild(script);
+          </script>
         </div>
       </div>
-      <script>
-        var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/Crow attack webgl.loader.js";
-        var config = {
-          dataUrl: buildUrl + "/Crow attack webgl.data.br",
-          frameworkUrl: buildUrl + "/Crow attack webgl.framework.js.br",
-          codeUrl: buildUrl + "/Crow attack webgl.wasm.br",
-          streamingAssetsUrl: "StreamingAssets",
-          companyName: "Themgineer Creative",
-          productName: "Crow Attack!",
-          productVersion: "1.0",
-        };
-  
-        var container = document.querySelector("#unity-container");
-        var canvas = document.querySelector("#unity-canvas");
-        var loadingBar = document.querySelector("#unity-loading-bar");
-        var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-  
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-          container.className = "unity-mobile";
-          config.devicePixelRatio = 1;
-        } else {
-          canvas.style.width = "960px";
-          canvas.style.height = "600px";
-        }
-        loadingBar.style.display = "block";
-  
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-          createUnityInstance(canvas, config, (progress) => {
-            progressBarFull.style.width = 100 * progress + "%";
-          }).then((unityInstance) => {
-            loadingBar.style.display = "none";
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }).catch((message) => {
-            alert(message);
-          });
-        };
-        document.body.appendChild(script);
-      </script>
-
-      <section class="portfolio-block website">
-        <div class="container">
-          <div class="row align-items-center" style="margin-top: 30px;">
-            <div class="col">
-                <h1 class="text-center">Crow Attack!</h1>
-                <p>I wanted to try making a game in Unity and C#, which I haven't actually done before, so this task ended up being almost a little more than I could chew. I wanted it to make it Hitchcock inspired and decided to make the enemies crows. I got the crow sprite from https://mugenguild.com/forum/topics/the-crow-eric-draven-sprite-sheet-capcom-style-183880.0.html It currently is not animated, though I would like to include that. I made the player asset using a free website (I forgot which but will try to find it) and used the forest tiles from Brackey's tutorials, which I also used to help me develop the Wave spawner. I would like to eventually create my own assets so that it will look like Hitchcock's The Birds, as well as add a splash screen that displays the highscore, powerups, and maybe even different levels. <br></p>
-            </div>
-          </div>
+      <div class="row align-items-center" style="margin-top: 30px;">
+        <div class="col">
+            <h1 class="text-center">Crow Attack!</h1>
+            <p>I wanted to try making a game in Unity and C#, which I haven't actually done before, so this task ended up being almost a little more than I could chew. I wanted it to make it Hitchcock inspired and decided to make the enemies crows. I got the crow sprite from https://mugenguild.com/forum/topics/the-crow-eric-draven-sprite-sheet-capcom-style-183880.0.html It currently is not animated, though I would like to include that. I made the player asset using a free website (I forgot which but will try to find it) and used the forest tiles from Brackey's tutorials, which I also used to help me develop the Wave spawner. I would like to eventually create my own assets so that it will look like Hitchcock's The Birds, as well as add a splash screen that displays the highscore, powerups, and maybe even different levels. <br></p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
+
+    
+
+
     
     <footer class="page-footer">
         <div class="container">
