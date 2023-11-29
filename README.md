@@ -1,2 +1,2 @@
 # sgreenlund3.github.io
-Portfolio; built with Bootstrap studio 
+Portfolio; built with html5up and tinyMCE 
