@@ -40,7 +40,7 @@
 		margin: 0;
 		padding: 0;
 		border: 0;
-		font-size: 90%;
+		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
 	}
@@ -149,15 +149,15 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		color: #777777;
-		font-size: 12pt;
+		font-size: 13pt;
 		line-height: 1.5em;
 
 		@include breakpoint('<=xlarge') {
-			font-size: 13pt;
+			font-size: 14pt;
 		}
 
 		@include breakpoint('<=large') {
-			font-size: 12pt;
+			font-size: 13pt;
 		}
 
 		@include breakpoint('<=small') {
