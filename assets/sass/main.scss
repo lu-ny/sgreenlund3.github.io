@@ -149,15 +149,15 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		color: #777777;
-		font-size: 13pt;
+		font-size: 14pt;
 		line-height: 1.5em;
 
 		@include breakpoint('<=xlarge') {
-			font-size: 14pt;
+			font-size: 16pt;
 		}
 
 		@include breakpoint('<=large') {
-			font-size: 13pt;
+			font-size: 14pt;
 		}
 
 		@include breakpoint('<=small') {
