@@ -1328,14 +1328,14 @@ input, select, textarea {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		color: #777777;
-		font-size: 13pt;
+		font-size: 14pt;
 		line-height: 1.5em;
 	}
 
 		@media screen and (max-width: 1680px) {
 
 			body, input, textarea, select {
-				font-size: 14pt;
+				font-size: 16pt;
 			}
 
 		}
@@ -1343,7 +1343,7 @@ input, select, textarea {
 		@media screen and (max-width: 1280px) {
 
 			body, input, textarea, select {
-				font-size: 13pt;
+				font-size: 14pt;
 			}
 
 		}
