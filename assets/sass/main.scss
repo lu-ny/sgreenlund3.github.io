@@ -40,7 +40,7 @@
 		margin: 0;
 		padding: 0;
 		border: 0;
-		font-size: 100%;
+		font-size: 95%;
 		font: inherit;
 		vertical-align: baseline;
 	}
@@ -150,7 +150,7 @@
 		font-weight: 300;
 		color: #777777;
 		font-size: 14pt;
-		line-height: 1.5em;
+		line-height: 1.75em;
 
 		@include breakpoint('<=xlarge') {
 			font-size: 14pt;
