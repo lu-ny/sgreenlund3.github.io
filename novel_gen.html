@@ -33,11 +33,14 @@
 								<header>
 									<h2>LLM Writing Exercise Generator</h2>
 									<p> <!-- style="font-size: 16px"> -->
-                    <br>I wannted to develop a fun way to do creative writing excercises, and came up with this generator. 
-                      It will take either input or random genres, themes, and tones, and then return a novel title and synopsis. 
-                      There's lots of things to use it for - I use it to practice building worlds, characters, scenes, etc. 
-                      <a href="https://colab.research.google.com/drive/1FhE4CIdLBCAU3VeieNTh91BpCk0owMDc?usp=sharing"> You can view the notebook in colab here </a> 
-                    <br>
+                    								I wanted to develop a fun way to do creative writing excercises, and came up with this generator. 
+                      								It will take either input or random genres, themes, and tones, and then return a novel title and synopsis. 
+										I set up a semantic embedding space for the genre, theme, and tone lists using bert-base-uncased, and then used cosine similarity to compare the words in my random selection code. 
+										Then I tuned the hyperparameters of my search helper function to output words are neither synonyms, antonyms, or otherwise incompatible.
+                      								There's lots of things to use it for - I use it to practice building worlds, characters, scenes, etc. 
+		     								 <a href="https://huggingface.co/spaces/lu-ny/Novel_Title_Summary_Gen"> You can try out the tool in HuggingFace Spaces here, </a>a>
+		      								or you can 
+                      								<a href="https://colab.research.google.com/drive/1FhE4CIdLBCAU3VeieNTh91BpCk0owMDc?usp=sharing"> view colab notebook here </a> 
 									</p>
 								</header>
 							</article>
